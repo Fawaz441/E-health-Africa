@@ -1,0 +1,85 @@
+{% extends 'base2.html' %}
+{% load static %}
+{% block main %}
+
+
+<div class="row">
+    <div class="col-lg-12 ml-3 mr-3">
+        <div style="display:flex;justify-content: space-between">
+            <h2 class="title-1 m-b-25">Medical Records</h2>
+            <select name="medical_records" id="records" style="margin-right:2rem;" onchange="filterRecords()"
+                class="au-input">
+                <option value="--"></option>
+                {% for condition in conditions %}
+                <option value={{condition}}>{{condition}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="table-responsive table--no-card m-b-40">
+            <table class="table table-borderless table-striped table-earning">
+                <thead>
+                    <tr>
+                        <th>Profile</th>
+                        <th>Gender</th>
+                        <th>Currently Admitted</th>
+                        <th>5 years</th>
+                        <th>Special Diet</th>
+                        <th class="text-right">Diseased</th>
+                        <th class="text-right">Allergies</th>
+                        <th class="text-right">Recent Disease</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for record in medical_records %}
+                    <tr class="record">
+                        <td>{{record.profile}}</td>
+                        <td>{{record.gender}}</td>
+                        <td>{{record.under_medical_treatment}}</td>
+                        <td class="text-right">{{record.hospitalized_within_5_years}}</td>
+                        <td class="text-right">{{record.on_special_diet}}</td>
+                        <td class="text-right">{{record.diseased}}</td>
+                        <td class="text-right">{{record.allergies}}</td>
+                        <td class="text-right">{{record.had_any_recent_disease}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock main %}
+
+
+{% block subscripts %}
+<script>
+    const filterRecords = () => {
+        let condition = document.getElementById('records').value
+        console.log(condition,condition == '--')
+        let records = document.querySelectorAll('tr.record')
+        if (condition !== '--') {
+            for (let i = 0; i < records.length; i++) {
+                if (records[i].innerText.indexOf(condition) > -1) {
+                    records[i].style.display = 'table-row';
+                }
+                else{
+                    records[i].style.display = 'none';
+                }
+            }
+        }
+        else {
+            for (let i = 0; i < records.length; i++) {
+              records[i].style.display = 'table-row'
+            }
+        }
+    }
+    // let recordSelect = document.getElementById('records')
+    // recordSelect.addEventListener('onchange',() => {
+    //     console.log(e.target.value)
+    //     console.log('changed')
+    // })
+</script>
+{% endblock subscripts %}

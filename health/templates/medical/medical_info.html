@@ -1,0 +1,95 @@
+{% extends 'base2.html' %}
+{% load static %}
+{% block main %}
+<!-- MAIN CONTENT-->
+<div class="section__content section__content--p30">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="container">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <strong>Medical</strong>
+                                    <small> Form</small>
+                                </div>
+                                <div class="card-body card-block">
+                                    <div class="form-group">
+                                        <label for="company" class=" form-control-label">Gender</label>
+                                        {{form.gender}}
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="vat" class=" form-control-label">Are you currently under
+                                            medical treatment?</label>
+                                        {{form.under_medical_treatment}}
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="street" class=" form-control-label">
+                                            Have you been hospitalized in the past 5 years?
+                                        </label>
+                                        {{form.hospitalized_within_5_years}}
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-8">
+                                            <div class="form-group">
+                                                <label for="city" class=" form-control-label">
+                                                    Are you currently on a special diet?
+                                                </label>
+                                                {{form.on_special_diet}}
+                                            </div>
+                                        </div>
+                                        <div class="col-8">
+                                            <div class="form-group">
+                                                <label for="postal-code" class=" form-control-label">
+                                                    Do you have one of the following conditions?
+                                                </label>
+                                                {{form.diseased}}
+                                            </div>
+                                        </div>
+
+                                        <div class="col-8">
+                                            <div class="form-group">
+                                                <label for="postal-code" class=" form-control-label">
+                                                    Do you have any other condition not stated above? . If
+                                                    yes,
+                                                    please state.
+                                                </label>
+                                                {{form.other_disease}}
+                                            </div>
+                                        </div>
+                                        <div class="col-8">
+                                            <div class="form-group">
+                                                <label for="postal-code" class=" form-control-label">
+                                                    Do you have any allergies? . If yes,
+                                                    please state.
+                                                </label>
+                                                {{form.allergies}}
+                                            </div>
+                                        </div>
+                                        <div class="col-8">
+                                            <div class="form-group">
+                                                <label for="postal-code" class=" form-control-label">
+                                                    Have you been infected by any of the following?
+                                                </label>
+                                                {{form.had_any_recent_disease}}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-footer" style="padding-left:0;">
+                                        <button type="submit" class="btn btn-primary btn-sm">
+                                            <i class="fa fa-dot-circle-o"></i> Submit
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main %}
